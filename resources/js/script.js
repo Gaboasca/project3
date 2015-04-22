@@ -173,4 +173,10 @@ Slider.prototype.move = function( dir ) {
             }
         }//if
     })//on
+
+
+    $(".header__items--menu").click(function (e) {
+        e.preventDefault();
+        $(".navigation-media").slideToggle();
+    });
 })();

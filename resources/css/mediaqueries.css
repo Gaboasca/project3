@@ -2,8 +2,16 @@
 	.l-navigation {
 		position: initial;
 		height: auto;
-		margin-bottom: 30px
 	}
+
+	.navigation {
+		display: none;
+	}
+
+	.header__items--menu {
+		display: block;
+	}
+
 	.section__block {
 	  width: 48.33%;
 	  margin-top: 23px;
