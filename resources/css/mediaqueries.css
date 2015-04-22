@@ -15,7 +15,43 @@
 
 	.section__block--primary {
 		display: block;
+		width: 80.33%;
 		margin: 0 auto;
+	}
+
+	.category-item {
+		width: 46%;
+	}
+
+	.item {
+		margin: 8px;
+	}
+
+	.form {
+	  width: 100%;
+	  margin-bottom: 34px;
+	}
+
+	.contact {
+	  width: 100%;
+	}
+
+	.form,
+	.contact {
+		display: block;
+	}
+
+	.l-container--media {
+		text-align: center
+	}
+
+	.l-social-media--media {
+		padding-bottom: 19px;
+		margin-bottom: 0;
+	}
+
+	.copywrite {
+	  padding: 9px 0;
 	}
 }
 
