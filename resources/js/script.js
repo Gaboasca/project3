@@ -6,7 +6,7 @@ function Slider( container, nav ) {
 
     this._resize();
     
-    this._timer();
+    // this._timer();
     
     //move the last item before first item, just in case user clicks prev button
     this.li.first().before(this.li.last());
@@ -89,10 +89,88 @@ Slider.prototype.move = function( dir ) {
     }.bind(this));
 };
 
+
+// function Gallery( button ) {
+//     this.button = button.find($('.filter'));
+
+//     this.button.on('click', function(e) {
+//         e.preventDefault();
+//         var $this = $(this);
+//         if( !$this.hasClass('active') ) 
+//         {
+//             this.button.removeClass('active');
+//             $this.addClass('active');
+
+//             var $filter = $this.data('rel');
+//             // var item = $('.item');
+//             if ( $filter == 'all' ) 
+//             {
+//                 $('.item')
+//                     .attr('data-item-group', 'gallery')
+//                     .not(':visible')
+//                     .fadeIn();
+//             }
+//             else
+//             {
+//                 $('.item')
+//                     .fadeOut(1000)
+//                     .filter(function() {
+//                         return $(this).data('filter') == $filter;
+//                     }) 
+//                     .attr('data-item-group', $filter)
+//                     .fadeIn(1000); 
+//             }
+//         }//if
+//     }.bind(this));//on
+// };
+
 (function() {
     var x = new Slider( $('.slider'), $('.buttons') );
+    // var y = new Gallery( $('.gallerywrap') );
 
     $(window).on('resize', function() {
     	x._resize();
     });
+
+
+
+    var button = $('.filter');
+    var item = $('.item');
+
+    $(".fancybox").fancybox({
+        prevEffect      : 'none',
+        nextEffect      : 'none',
+        closeBtn        : 'none',
+        helpers     : {
+            buttons : {}
+        }
+    });
+
+    button.on ('click', function() {
+        var $this = $(this);
+        if( !$this.hasClass('active') ) 
+        {
+            button.removeClass('active');
+            $this.addClass('active');
+
+            var $filter = $this.data('rel');
+            if ( $filter == 'all' ) 
+            {
+                item
+                    .attr('data-item-group', 'gallery')
+                    .not(':visible')
+                    .fadeIn();
+            }
+            else
+            {
+                item
+                    .fadeOut(1000)
+                    .filter(function() {
+                        return $(this).data('filter') == $filter;
+                    }) 
+                    .attr('data-fancybox-group', $filter)
+                    .fadeIn(1000); 
+            }
+        }//if
+    })//on
 })();

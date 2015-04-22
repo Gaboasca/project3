@@ -1,0 +1,24 @@
+@media screen and (max-width: 850px) {
+	.l-navigation {
+		position: initial;
+		height: auto;
+		margin-bottom: 30px
+	}
+	.section__block {
+	  width: 48.33%;
+	  margin-top: 23px;
+	}
+
+	.section__block__avatar {
+		display: block;
+	}
+
+	.section__block--primary {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	
+}
