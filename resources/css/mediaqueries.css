@@ -19,6 +19,10 @@
 		margin: 0 auto;
 	}
 
+	.section__block__avatar--media {
+		margin-bottom: 10px;
+	}
+
 	.category-item {
 		width: 46%;
 	}
