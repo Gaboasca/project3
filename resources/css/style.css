@@ -84,7 +84,6 @@ HEADER
 
 .l-navigation--section {
 	position: initial;
-	margin-top: 12px;
 }
 
 .nav-icon {
@@ -147,7 +146,7 @@ HEADER
 }
 
 .l-dot {
-	margin: 6px 10px 0 12px;
+	margin: 0 10px 0 12px;
 	vertical-align: top;
 }
 
@@ -431,8 +430,7 @@ Third Section
 
 .category-buttons {
 	padding: 3px 9px;
-	margin-top: 5px;
-	margin-right: 8px;
+	margin: 8px;
 	outline: none;
 	border: 1px solid #666d89;
 	border-radius: 5px;
@@ -520,7 +518,7 @@ FOOTER
 */
 
 .copywrite {
-	padding: 71px 0;
+	padding: 16px 0;
 }
 
 .l-social-media {

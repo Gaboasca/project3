@@ -1,3 +1,23 @@
+(function($) {
+ 
+  var o = $({});
+ 
+  $.subscribe = function() {
+    o.on.apply(o, arguments);
+  };
+ 
+  $.unsubscribe = function() {
+    o.off.apply(o, arguments);
+  };
+ 
+  $.publish = function() {
+    o.trigger.apply(o, arguments);
+  };
+ 
+}(jQuery));
+
+
+
 function Slider( container, nav ) {     
     this.container = container;
     this.ul = this.container.children('ul');    
@@ -92,59 +112,60 @@ Slider.prototype.move = function( dir ) {
     }.bind(this));
 };
 
-(function() {
-    var x = new Slider( $('.slider'), $('.buttons') );
-    // var y = new Gallery( $('.gallerywrap') );
-
-    $(window).on('resize', function() {
-    	x._resize();
-    });
 
 
+function Gallery( container ) {
+    this.container = container
+    this.buttons = this.container.find('.filter');
+    this.items = this.container.find('.item');
 
-    var button = $('.filter');
-    var item = $('.item');
+    this.buttons.on('click', function(e) {
+        e.preventDefault();
+        var $this = $(e.target);
+        var filter = $this.data('rel');
 
-    $(".fancybox").fancybox({
-        prevEffect      : 'none',
-        nextEffect      : 'none',
-        closeBtn        : 'none',
-        helpers     : {
-            buttons : {}
-        }
-    });
-
-    button.on ('click', function() {
-        var $this = $(this);
         if( !$this.hasClass('active') ) 
         {
-            button.removeClass('active');
+            this.buttons.removeClass('active');
             $this.addClass('active');
-
-            var $filter = $this.data('rel');
-            if ( $filter == 'all' ) 
-            {
-                item
-                    .attr('data-item-group', 'gallery')
-                    .not(':visible')
-                    .fadeIn();
-            }
-            else
-            {
-                item
-                    .fadeOut(1000)
-                    .filter(function() {
-                        return $(this).data('filter') == $filter;
-                    }) 
-                    .attr('data-fancybox-group', $filter)
-                    .fadeIn(1000); 
-            }
+            this.filter(filter)
         }
+
+    }.bind(this));
+};
+
+Gallery.prototype.filter = function(category) {
+    $.publish('changedCategory', category);
+    if ( category == 'all' ) {
+        this.items
+            .not(':visible')
+            .fadeIn();
+    } else {
+        this.items
+            .stop(true, true)
+            .fadeOut(0)
+            .filter(function() {
+                return $(this).data('filter') == category;
+            })
+            .fadeIn(1000); 
+    }
+};
+
+(function() {
+    var x = new Slider( $('.slider'), $('.buttons') );
+    var y = new Gallery( $('.gallery') );
+
+    $.subscribe('changedCategory', function(ev, category) {
+            $('.section__title span').text(category);
     });
 
+
+    $(window).on('resize', function() {
+        x._resize();
+    });
 
     $(".header__items--menu").click(function (e) {
         e.preventDefault();
-        $(".navigation-media").slideToggle();
+        $(".navigation-media").stop(true,true).slideToggle();
     });
 })();
