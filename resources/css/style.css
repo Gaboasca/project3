@@ -241,8 +241,9 @@ First Section
 .fifth-section-bg {
 	background-color:  #f06c64;
 	border-bottom: 6px solid #ea676b;
-	transition:background-color 2s ease;
-}
+	transition: background-color 2s ease, border-color 2s ease;
+
+	}
 
 .l-slider {
 	position:relative;

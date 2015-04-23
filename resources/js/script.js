@@ -47,11 +47,14 @@ Slider.prototype._timer = function() {
 };
 
 Slider.prototype.changeBackgroundColor = function() {
-	var x = Math.floor(Math.random() * 256);
-	var y = Math.floor(Math.random() * 256);
-	var z = Math.floor(Math.random() * 256);
+    var first_section_bg = $('.first-section-bg');
+	var x = Math.floor(Math.random() * 255);
+	var y = Math.floor(Math.random() * 255);
+	var z = Math.floor(Math.random() * 255);
 	var rgb = "rgb(" + x + "," + y + "," + z + ")"; 
-	$('.first-section-bg').css('backgroundColor', rgb);
+    var rgb_border = "rgb(" + (x+10) + "," + (y+10) + "," + (z+10) + ")";
+	first_section_bg.css('backgroundColor', rgb);
+    first_section_bg.css('border-color', rgb_border);
 };
 
 Slider.prototype.move = function( dir ) {
@@ -88,41 +91,6 @@ Slider.prototype.move = function( dir ) {
         this.isAnimating = false;
     }.bind(this));
 };
-
-
-// function Gallery( button ) {
-//     this.button = button.find($('.filter'));
-
-//     this.button.on('click', function(e) {
-//         e.preventDefault();
-//         var $this = $(this);
-//         if( !$this.hasClass('active') ) 
-//         {
-//             this.button.removeClass('active');
-//             $this.addClass('active');
-
-//             var $filter = $this.data('rel');
-//             // var item = $('.item');
-//             if ( $filter == 'all' ) 
-//             {
-//                 $('.item')
-//                     .attr('data-item-group', 'gallery')
-//                     .not(':visible')
-//                     .fadeIn();
-//             }
-//             else
-//             {
-//                 $('.item')
-//                     .fadeOut(1000)
-//                     .filter(function() {
-//                         return $(this).data('filter') == $filter;
-//                     }) 
-//                     .attr('data-item-group', $filter)
-//                     .fadeIn(1000); 
-//             }
-//         }//if
-//     }.bind(this));//on
-// };
 
 (function() {
     var x = new Slider( $('.slider'), $('.buttons') );
@@ -171,8 +139,8 @@ Slider.prototype.move = function( dir ) {
                     .attr('data-fancybox-group', $filter)
                     .fadeIn(1000); 
             }
-        }//if
-    })//on
+        }
+    });
 
 
     $(".header__items--menu").click(function (e) {
