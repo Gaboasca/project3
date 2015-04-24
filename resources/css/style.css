@@ -322,6 +322,7 @@ First Section
 .slider__wrap__item__content {
 	padding-left: 120px;
 	padding-right: 120px;
+	text-align: center;	
 }
 
 .slider__wrap__item__content__img {

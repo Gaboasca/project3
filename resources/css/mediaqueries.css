@@ -92,12 +92,15 @@
 @media screen and (max-width: 570px) {
 	.l-slider {
 		margin: auto;
-		width: 306px;
-		height: 206px;
+		width: 100%;
 	}
 
 	.buttons {
 		height: 0;
+	}
+
+	.slider__wrap__item__content__img {
+	  width: 100px;
 	}
 }
 

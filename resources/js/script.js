@@ -18,15 +18,17 @@
 
 
 
-function Slider( container, nav ) {     
+function Slider( container ) {     
     this.container = container;
-    this.ul = this.container.children('ul');    
+    this.containerWrap = this.container.find('.slider');
+    this.containerNav = this.container.find('.buttons');
+    this.ul = this.containerWrap.children('ul');    
     this.li = this.ul.children('li');     
     this.isAnimating = false;
 
     this._resize();
     
-    // this._timer();
+    this._timer();
     
     //move the last item before first item, just in case user clicks prev button
     this.li.first().before(this.li.last());
@@ -34,7 +36,7 @@ function Slider( container, nav ) {
     this.ul.css({'left': this.leftValue});
 
 
-    nav.find('.slider__button').on("click",function(ev) {
+    this.containerNav.find('.slider__button').on("click",function(ev) {
         ev.preventDefault();
         this.move( $(ev.target).data('dir') );
     }.bind(this));
@@ -42,7 +44,7 @@ function Slider( container, nav ) {
 
 Slider.prototype._resize = function () {
     //grab the width and calculate left value
-    this.itemWidth = $('.l-slider').outerWidth();
+    this.itemWidth = this.container.outerWidth();
     this.li.css('width', this.itemWidth);
     this.ul.css('width', this.itemWidth * this.li.length);
     this.leftValue = this.itemWidth * (-1);
@@ -118,6 +120,9 @@ function Gallery( container ) {
     this.container = container
     this.buttons = this.container.find('.filter');
     this.items = this.container.find('.item');
+    this.fancybox = this.container.find('.fancybox');
+
+    this.expandImage();
 
     this.buttons.on('click', function(e) {
         e.preventDefault();
@@ -130,7 +135,6 @@ function Gallery( container ) {
             $this.addClass('active');
             this.filter(filter)
         }
-
     }.bind(this));
 };
 
@@ -145,20 +149,36 @@ Gallery.prototype.filter = function(category) {
             .stop(true, true)
             .fadeOut(0)
             .filter(function() {
-                return $(this).data('filter') == category;
+                var dataFilter = $(this).data('filter');
+                for(var i = 0; i < dataFilter.length; i++) {
+                    if (dataFilter[i] == category)
+                        return true;
+                }
             })
             .fadeIn(1000); 
     }
 };
 
+Gallery.prototype.expandImage = function() {
+    this.fancybox.fancybox({
+        prevEffect      : 'none',
+        nextEffect      : 'none',
+        closeBtn        : 'none',
+        helpers     : {
+            buttons : {}
+        }
+    });
+};
+
+
+
 (function() {
-    var x = new Slider( $('.slider'), $('.buttons') );
+    var x = new Slider( $('.l-slider') );
     var y = new Gallery( $('.gallery') );
 
     $.subscribe('changedCategory', function(ev, category) {
             $('.section__title span').text(category);
     });
-
 
     $(window).on('resize', function() {
         x._resize();
