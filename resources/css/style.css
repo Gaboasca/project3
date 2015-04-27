@@ -452,14 +452,37 @@ Third Section
 	text-align: center;
 }
 
+.img-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(10,10,10,0.3);
+}
+
 .item {
 	margin: 10px;
 }
 
-.category-item {
+.category-item-thumbnail {
 	width: 22%;
 	margin-top: 20px;
 	text-decoration: none;
+}
+
+.overlay-item {
+	width: 40%;
+	display: none;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: top .5s ease;
+}
+.overlay-item.active-overlay{
+	top: 50%;
 }
 
 /* 
