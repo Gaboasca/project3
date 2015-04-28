@@ -131,7 +131,7 @@ HEADER
 }
 
 .header__items--media {
-	display: block;
+	display: none;
 	font-size: 18px;
 	border: 1px solid #31343E;
 	background: #464B58;
@@ -466,6 +466,10 @@ Third Section
 	margin: 10px;
 }
 
+.item:last-child {
+	margin-right: 0;
+}
+
 .category-item-thumbnail {
 	width: 22%;
 	margin-top: 20px;
@@ -484,15 +488,6 @@ Third Section
 .overlay-item.active-overlay{
 	top: 50%;
 }
-
-/* 
-=============
-Fourth Section
-=============
-*/
-
-
-
 
 /* 
 =============
