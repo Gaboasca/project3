@@ -6,7 +6,7 @@ function Slider( container ) {
     this.li = this.ul.children('li');     
     this.isAnimating = false;
 
-    this._resize();
+    this._resizeSlider();
     
     this._timer();
     
@@ -15,14 +15,13 @@ function Slider( container ) {
     //set the default item to the correct position 
     this.ul.css({'left': this.leftValue});
 
-
     this.containerNav.find('.slider__button').on("click",function(ev) {
         ev.preventDefault();
         this.move( $(ev.target).data('dir') );
     }.bind(this));
 };
 
-Slider.prototype._resize = function () {
+Slider.prototype._resizeSlider = function () {
     //grab the width and calculate left value
     this.itemWidth = this.container.outerWidth();
     this.li.css('width', this.itemWidth);
